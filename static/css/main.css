@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    padding: 0;
+}
+
+.content {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+th, tr, td {
+    border-style: solid;
+    padding: 10px;
+    border-width: 0.1em;
+    border-color: rgb(201, 201, 201);
+}
+
+form {
+    margin-top: 5%
+}

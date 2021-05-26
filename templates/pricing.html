@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title> Pricing </title>
+{% endblock %}
+
+{% block body %}
+    <!-- Flask uses ginja2 for templating-->
+    <h1>Pricing Offer</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis omnis provident voluptatibus eius asperiores, nemo reiciendis numquam quisquam doloremque rem consequuntur cum modi esse, tempore sunt blanditiis ratione impedit at.</p>
+    <h2>Tier 1</h2>
+    <p>We offer for a price of <span>{{tier1Price}}</span></p>
+    <h2>Tier 2</h2>
+    <p>We offer for a price of <span>{{tier2Price}}</span></p>
+{% endblock %}
