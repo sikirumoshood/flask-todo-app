@@ -76,6 +76,8 @@ def pricing():
     return render_template('pricing.html', tier1Price=3000, tier2Price=5000)
 
 if __name__ == "__main__":
+    '''
+        RUN MIGRATION
+    '''
+    db.create_all()
     app.run(debug=True)
-
-
