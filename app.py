@@ -70,7 +70,9 @@ def updateTask(id):
         except:
             return 'Failed to update task'
 
-
+@app.route('/healthcheck')
+def healthcheck():
+    return 'Application works!'
 
 @app.route('/pricing')
 def pricing():
