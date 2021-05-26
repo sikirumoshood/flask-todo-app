@@ -8,7 +8,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.getenv('APP_DATABASE_URL')
 
 if DATABASE_URL == None:
     raise Exception("Database is required")
@@ -25,7 +25,7 @@ class Todo(db.Model):
 
     def __repr__(self):
         return '<Task %r>' % self.id
-        
+
 db.create_all()
 
 @app.route('/', methods=['POST', 'GET'])
