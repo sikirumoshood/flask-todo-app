@@ -1,9 +1,20 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://moshoodsikiru:root@localhost:5432/todo_app'
+
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL == None:
+    raise Exception("Database is required")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
