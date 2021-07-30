@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  flask_api:
+    build: .
+    ports:
+      # Expose 5000
+      - 5001:5000
+    depends_on:
+      - flaskdb
+  flaskdb:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=flaskapp
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=todo_app
+    ports: 
+      - "8001:5432"
+
+volumes:
+  postgres_data:

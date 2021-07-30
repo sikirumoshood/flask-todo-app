@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+import json
+import requests
 
 load_dotenv()
 
 app = Flask(__name__)
 
 DATABASE_URL = os.getenv('APP_DATABASE_URL')
+PORT = os.getenv('PORT')
 
 if DATABASE_URL == None:
     raise Exception("Database is required")
@@ -78,7 +81,17 @@ def healthcheck():
 def pricing():
     return render_template('pricing.html', tier1Price=3000, tier2Price=5000)
 
+@app.route('/jokes', methods=['GET'])
+def hobbies():
+    try:
+        response = requests.get('https://nonsense.com')
+        resp = Response(response, status = 200, headers = { 'Content-Type': 'application/json' })
+        return resp
+    except Exception as err:
+        print(':::: FAILED TO FETCH JOKES ::::', str(err))
+        response = { "status": 'error', "message": "Failed to fetch jokes", "code": 400 }
+        return Response(json.dumps(response), 400, { 'Content-Type': 'application/json' })
+    
+
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
+    app.run(debug=True, host="0.0.0.0", port=PORT)
